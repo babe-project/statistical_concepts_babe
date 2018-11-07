@@ -4,7 +4,7 @@ var intro = {
     title: "Welcome!",
     // introduction text
     text:
-        "This is a minimal (non-sense) example of a _babe experiment. More information can be found <a href='https://babe-project.github.io/babe_site/'>here</a>.",
+        "This is a short survey on your understanding of confidence intervals.",
     // introduction's slide proceeding button text
     buttonText: "Begin experiment",
     // render function renders the view
@@ -61,8 +61,8 @@ var instructions = {
     name: "instructions",
     title: "Instructions",
     text:
-        "On each trial, you will see a question and two response options. Please select the response option you like most. We start with two practice trials.",
-    buttonText: "Go to practice trial",
+        "On each trial, you will see the same picture showing a researcher who has computed a confidence interval. You will also see various statements about this result. Please indicate whether that statement is true or false of the result shown in the picture.",
+    buttonText: "Let's do it!",
 
     render: function() {
         var viewTemplate = $("#instructions-view").html();
@@ -82,61 +82,6 @@ var instructions = {
     trials: 1
 };
 
-var practice = {
-    name: "practice",
-    title: "Practice trial",
-    render: function(CT) {
-        var viewTemplate = $("#practice-view").html();
-        $("#main").html(
-            Mustache.render(viewTemplate, {
-                title: this.title,
-                question: exp.trial_info.practice_trials[CT].question,
-                option1: exp.trial_info.practice_trials[CT].option1,
-                option2: exp.trial_info.practice_trials[CT].option2,
-                picture: exp.trial_info.practice_trials[CT].picture
-            })
-        );
-        var startingTime = Date.now();
-        // attaches an event listener to the yes / no radio inputs
-        // when an input is selected a response property with a value equal to the answer is added to the trial object
-        // as well as a readingTimes property with value - a list containing the reading times of each word
-        $("input[name=answer]").on("change", function() {
-            var RT = Date.now() - startingTime; // measure RT before anything else
-            var trial_data = {
-                trial_type: "practice",
-                trial_number: CT + 1,
-                question: exp.trial_info.practice_trials[CT].question,
-                option1: exp.trial_info.practice_trials[CT].option1,
-                option2: exp.trial_info.practice_trials[CT].option2,
-                option_chosen: $("input[name=answer]:checked").val(),
-                RT: RT
-            };
-            exp.trial_data.push(trial_data);
-            exp.findNextView();
-        });
-    },
-    trials: 2
-};
-
-var beginMainExp = {
-    name: "beginMainExp",
-    text:
-        "Now that you have acquainted yourself with the procedure of the task, the actual experiment will begin.",
-    render: function() {
-        var viewTemplate = $("#begin-exp-view").html();
-        $("#main").html(
-            Mustache.render(viewTemplate, {
-                text: this.text
-            })
-        );
-
-        // moves to the next view
-        $("#next").on("click", function() {
-            exp.findNextView();
-        });
-    },
-    trials: 1
-};
 
 var main = {
     name: "main",
