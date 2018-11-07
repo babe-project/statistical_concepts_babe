@@ -125,7 +125,7 @@ var postTest = {
     name: "postTest",
     title: "Additional Info",
     text:
-        "Answering the following questions is optional, but will help us understand your answers.",
+        "Please answer the following question. Leave a comment if you want to (this is totally optional).",
     buttonText: "Continue",
     render: function() {
         var viewTemplate = $("#post-test-view").html();
@@ -142,10 +142,8 @@ var postTest = {
             e.preventDefault();
 
             // records the post test info
-            exp.global_data.age = $("#age").val();
-            exp.global_data.gender = $("#gender").val();
+            exp.global_data.class = $("#class").val();
             exp.global_data.education = $("#education").val();
-            exp.global_data.languages = $("#languages").val();
             exp.global_data.comments = $("#comments")
                 .val()
                 .trim();
