@@ -61,7 +61,7 @@ var instructions = {
     name: "instructions",
     title: "Instructions",
     text:
-        "On each trial, you will see the same picture showing a researcher who has computed a confidence interval. You will also see various statements about this result. Please indicate whether that statement is true or false of the result shown in the picture.",
+        "On each trial, you will see the same picture showing a researcher who has computed a confidence interval. You will also see various statements about this result. <p> <strong>Your task is to indicate whether each statement is true or false in virtue of the definition of a confidence interval.</strong>",
     buttonText: "Let's do it!",
 
     render: function() {
