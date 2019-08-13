@@ -18,6 +18,7 @@ $("document").ready(function() {
             intro,
             instructions,
             statistical_expertise_rating,
+            begin_main,
             forced_choice_2A,
             post_test,
             thanks,

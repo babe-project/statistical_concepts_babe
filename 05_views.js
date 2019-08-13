@@ -23,14 +23,13 @@ const intro = magpieViews.view_generator("intro", {
   trials: 1,
   name: 'intro',
   // If you use JavaScripts Template String `I am a Template String`, you can use HTML <></> and javascript ${} inside
-  text: `This is a sample introduction view.
+  text: `Thank you for participating in this survey! 
             <br />
             <br />
-            The introduction view welcomes the participant and gives general information
-            about the experiment. You are in the <strong>${coin}</strong> group.
+             Your participation is voluntary, meaning that you are free to stop at any time. The data from this survey will be used anonymously for scientific purposes.
             <br />
             <br />
-            This is a minimal experiment with one forced choice view. It can serve as a starting point for programming your own experiment.`,
+            <strong>Please do not take part in this survey more than once!</strong>.`,
   buttonText: 'begin the experiment'
 });
 
@@ -39,11 +38,16 @@ const instructions = magpieViews.view_generator("instructions", {
   trials: 1,
   name: 'instructions',
   title: 'General Instructions',
-  text: `This is a sample instructions view.
-            <br />
-            <br />
-            Tell your participants what they are to do here.`,
+  text: `This survey is concerned with researchers' knowledge of basic statistical concepts. We start by asking you to assess your own level of expertise in statistics.`,
   buttonText: 'go to trials'
+});
+
+const begin_main = magpieViews.view_generator("begin", {
+    trials: 1,
+    name: 'begin',
+    title: 'General Instructions',
+    text: `In the next part we will show you six statements about the concept "confidence interval". We show you a scientist who has computed a confidence interval, and ask you to judge whether each of the six statements (presented one after the other) logically follows from the result and the definition of "confidence interval". <strong>Do not look up the definition, but judge based on your current understanding of what "confidence intervals" mean!</strong>`,
+    buttonText: 'go to trials'
 });
 
 
@@ -108,7 +112,7 @@ const forced_choice_2A = magpieViews.view_generator("forced_choice", {
   trials: trial_info.forced_choice.length,
   // name should be identical to the variable name
   name: 'forced_choice_2A',
-  data: trial_info.forced_choice,
+  data: _.shuffle(trial_info.forced_choice),
   // you can add custom functions at different stages through a view's life cycle
   // hook: {
   //     after_response_enabled: check_response
@@ -120,7 +124,7 @@ const statistical_expertise_rating = magpieViews.view_generator("rating_scale", 
     trials: 1,
     name: 'expertise_rating',
     data: [{
-        question: "Please indicate your level of statistical experience from 1 (no stats course taken, no practical experience), to 7 (teaching statistics at a university)?",
+        question: "Please indicate your level of statistical experience from 1 (no stats course taken, no practical experience), to 7 (teaching statistics at a university)!",
         optionLeft: '',
         optionRight: ''
     }]
